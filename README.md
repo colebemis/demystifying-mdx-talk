@@ -4,4 +4,6 @@ A talk about how MDX works under the hood. Presented at [MDXConf](https://mdxjs.
 
 ## Slides
 
-https://demystifying-mdx.netlify.app (built with [mdx-deck](https://github.com/jxnblk/mdx-deck))
+https://demystifying-mdx.netlify.app
+
+(Built with [mdx-deck](https://github.com/jxnblk/mdx-deck))
