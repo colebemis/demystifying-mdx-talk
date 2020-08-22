@@ -1,0 +1,1001 @@
+import Code from "mdx-code"
+import { Box, Button } from "theme-ui"
+import { CodeSurfer } from "code-surfer"
+import { github } from "@code-surfer/themes"
+import Block from './block'
+
+
+export const theme = {
+  colors: {
+    text: "black",
+    background: "white",
+    accent: "blue"
+  },
+  styles: {
+    pre: {
+      fontFamily: 'Courier',
+      lineHeight: 1,
+         fontSize: 26
+    },
+    code: {
+      fontFamily: 'Courier',
+         lineHeight: 1,
+      fontSize: 26
+    },
+    p: {
+      lineHeight: 1.5,
+    },
+    li: {
+      lineHeight: 1.5,
+      pb: 3
+    },
+    Slide: {
+      // padding: "10%",
+    },
+    a: {
+      color: 'accent'
+    }
+  },
+}
+
+# Demystifying MDX
+
+<Notes>Hi, everyone!</Notes>
+
+---
+
+[@colebemis](https://twitter.com/colebemis)
+
+---
+
+I work on design systems at GitHub.
+
+---
+
+I have a confession...
+
+---
+
+When I agreed to do this talk, I didn't know how MDX worked.
+
+---
+
+Here's the story...
+
+---
+
+<Box sx={{ display: "grid", gridGap: 3 }}>
+  <Steps>
+    <Box
+      sx={{
+        bg: "#eee",
+        py: 3,
+        px: 4,
+        borderRadius: 36,
+        borderBottomLeftRadius: 8,
+      }}
+    >
+      Do you want to talk at MDX Conf?
+    </Box>
+    <Box
+      sx={{
+        justifySelf: "end",
+        bg: "accent",
+        color: "#fff",
+        py: 3,
+        px: 4,
+        borderRadius: 36,
+        borderBottomRightRadius: 8,
+      }}
+    >
+      Of course!
+    </Box>
+  </Steps>
+</Box>
+
+---
+
+<Box sx={{ display: "grid", gridGap: 3 }}>
+  <Steps>
+    <Box
+      sx={{
+        justifySelf: "end",
+        bg: "accent",
+        color: "#fff",
+        py: 3,
+        px: 4,
+        borderRadius: 36,
+        borderBottomRightRadius: 8,
+      }}
+    >
+      What if I explained how MDX works under the hood?
+    </Box>
+    <Box
+      sx={{
+        justifySelf: "start",
+        bg: "#eee",
+        py: 3,
+        px: 4,
+        borderRadius: 36,
+        borderBottomLeftRadius: 8,
+      }}
+    >
+      That'd be awesome!
+    </Box>
+    <Box
+      sx={{
+        justifySelf: "end",
+        bg: "accent",
+        color: "#fff",
+        py: 3,
+        px: 4,
+        borderRadius: 36,
+        borderBottomRightRadius: 8,
+      }}
+    >
+      Okay, I'll do it
+    </Box>
+    <Box
+      sx={{
+        justifySelf: "end",
+        border: ".1em dashed #aaa",
+        py: 3,
+        px: 4,
+        borderRadius: 36,
+        borderBottomRightRadius: 8,
+      }}
+    >
+      Uh oh
+    </Box>
+  </Steps>
+</Box>
+
+---
+
+Let's get started...
+
+---
+
+But first, why bother?
+
+---
+
+<Steps>
+
+- Debugging
+- Contribution
+- Productivity
+
+</Steps>
+
+---
+
+Okay, now let's get started...
+
+---
+
+<Box sx={{display: 'flex'}}>
+
+<Box>
+<p style={{margin: 0}}>browser</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+  <Box sx={{zoom: 0.5}}>
+    <h1>This is a heading</h1>
+    <p>Hello potato</p>
+  </Box>
+</Block>
+</Box>
+
+</Box>
+
+---
+
+<Box sx={{display: 'flex'}}>
+
+<Box>
+<p style={{margin: 0}}>html</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+<Box sx={{zoom: 0.5}}>
+
+```
+<div>
+  <h1>This is a heading</h1>
+  <p>Hello potato</p>
+</div>
+```
+
+</Box>
+</Block>
+</Box>
+
+<div style={{alignSelf: 'center', margin: 16}}>→</div>
+
+<Box>
+<p style={{margin: 0}}>browser</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+  <Box sx={{zoom: 0.5}}>
+    <h1>This is a heading</h1>
+    <p>Hello potato</p>
+  </Box>
+</Block>
+</Box>
+
+</Box>
+
+---
+
+<Box sx={{display: 'flex'}}>
+
+<Box>
+<p style={{margin: 0}}>markdown</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+<Box sx={{zoom: 0.5}}>
+
+```
+# This is a heading
+
+Hello potato
+```
+
+</Box>
+</Block>
+</Box>
+
+<div style={{alignSelf: 'center', margin: 16}}>→</div>
+
+<Box>
+<p style={{margin: 0}}>html</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+<Box sx={{zoom: 0.5}}>
+
+```
+<div>
+  <h1>This is a heading</h1>
+  <p>Hello potato</p>
+</div>
+```
+
+</Box>
+</Block>
+</Box>
+
+<div style={{alignSelf: 'center', margin: 16}}>→</div>
+
+<Box>
+<p style={{margin: 0}}>browser</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+  <Box sx={{zoom: 0.5}}>
+    <h1>This is a heading</h1>
+    <p>Hello potato</p>
+  </Box>
+</Block>
+</Box>
+
+</Box>
+
+---
+
+<Box sx={{display: 'flex'}}>
+
+<Box>
+<p style={{margin: 0}}>mdx</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+<Box sx={{zoom: 0.5}}>
+
+```
+import Button from './button'
+
+# This is a heading
+
+Hello potato
+
+<Button>Click me</Button>
+```
+
+</Box>
+</Block>
+</Box>
+
+<div style={{alignSelf: 'center', margin: 16}}>→</div>
+
+<Box>
+<p style={{margin: 0}}>html</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+<Box sx={{zoom: 0.5}}>
+
+```
+<div>
+  <h1>This is a heading</h1>
+  <p>Hello potato</p>
+  <button class='...'>
+    Click me
+  </button>
+</div>
+```
+
+</Box>
+</Block>
+</Box>
+
+<div style={{alignSelf: 'center', margin: 16}}>→</div>
+
+<Box>
+<p style={{margin: 0}}>browser</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+  <Box sx={{zoom: 0.5}}>
+    <h1>This is a heading</h1>
+    <p>Hello potato</p>
+    <Button bg="accent">Click me</Button>
+  </Box>
+</Block>
+</Box>
+
+</Box>
+
+---
+
+"MDX (the library), at its core, transforms MDX (the syntax) to JSX."
+
+— https://mdxjs.com/advanced/api
+
+---
+
+<Box sx={{display: 'flex'}}>
+
+<Box>
+<p style={{margin: 0}}>mdx</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+<Box sx={{zoom: 0.5}}>
+
+```
+import Button from './button'
+
+# This is a heading
+
+Hello potato
+
+<Button>Click me</Button>
+```
+
+</Box>
+</Block>
+</Box>
+
+<div style={{alignSelf: 'center', margin: 16}}>→</div>
+
+<Box>
+<p style={{margin: 0}}>jsx</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+<Box sx={{zoom: 0.5}}>
+
+```
+import Button from './button'
+
+export default () => (
+  <div>
+    <h1>This is a heading</h1>
+    <p>Hello potato</p>
+    <Button>Click me</Button>
+  </div>
+)
+```
+
+</Box>
+</Block>
+</Box>
+
+<div style={{alignSelf: 'center', margin: 16}}>→</div>
+
+<Box>
+<p style={{margin: 0}}>html</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+<Box sx={{zoom: 0.5}}>
+
+```
+<div>
+  <h1>This is a heading</h1>
+  <p>Hello potato</p>
+  <button class='...'>
+    Click me
+  </button>
+</div>
+```
+
+</Box>
+</Block>
+</Box>
+
+<div style={{alignSelf: 'center', margin: 16}}>→</div>
+
+<Box>
+<p style={{margin: 0}}>browser</p>
+<Block sx={{py: 2, px: 3, width: 260, height: '100%'}}>
+  <Box sx={{zoom: 0.5}}>
+    <h1>This is a heading</h1>
+    <p>Hello potato</p>
+    <Button bg="accent">Click me</Button>
+  </Box>
+</Block>
+</Box>
+
+</Box>
+
+---
+
+```js
+var mdx = require("@mdx-js/mdx")
+
+await mdx(`
+import Button from './button'
+
+# This is a heading
+
+Hello potato
+
+<Button>Click me</Button>
+`)
+```
+
+---
+
+```jsx
+import Button from "./button";
+
+const layoutProps = {};
+const MDXLayout = "wrapper";
+export default function MDXContent({ components, ...props }) {
+  return (
+    <MDXLayout
+      {...layoutProps}
+      {...props}
+      components={components}
+      mdxType="MDXLayout"
+    >
+      <h1>{`This is a heading`}</h1>
+      <p>{`Hello potato`}</p>
+      <Button mdxType="Button">Click me</Button>>
+    </MDXLayout>
+  );
+}
+
+MDXContent.isMDXComponent = true;
+```
+
+---
+
+## Takeaway #1
+
+<Box sx={{px: '10%'}}>
+
+<Steps>
+
+MDX (the library), at its core, is a function that accepts an MDX string and returns a JSX string.
+
+</Steps>
+
+</Box>
+
+---
+
+```js
+var mdx = require("@mdx-js/mdx")
+
+await mdx(`
+import Button from './button'
+
+# This is a heading
+
+Hello potato
+
+<Button>Click me</Button>>
+`)
+```
+
+
+---
+
+<CodeSurfer>
+
+```js
+async function mdx(mdxString) {
+  const processor = unified()
+    .use(toMDAST)
+    .use(remarkMdx)
+    .use(mdxAstToMdxHast)
+    .use(mdxHastToJsx)
+
+  const file = await processor.process(mdxString)
+
+  return file.contents
+}
+```
+
+```js 2[21:30]
+async function mdx(mdxString) {
+  const processor = unified()
+    .use(toMDAST)
+    .use(remarkMdx)
+    .use(mdxAstToMdxHast)
+    .use(mdxHastToJsx)
+
+  const file = await processor.process(mdxString)
+
+  return file.contents
+}
+```
+
+</CodeSurfer>
+
+---
+
+unified
+
+---
+
+
+input string → <Block sx={{color: 'transparent'}}>processor</Block> → output string
+
+
+---
+
+
+input string → <Block>processor</Block> → output string
+
+---
+
+
+MDX string → <Block>processor</Block> → JSX string
+
+
+---
+
+## Takeaway #2
+
+<Box sx={{px: '10%'}}>
+
+
+<Steps>
+
+MDX (the library) uses a package called unified to build the function (aka processor) that can transform an MDX string into a JSX string.
+
+</Steps>
+
+</Box>
+
+---
+
+
+input string → <Block>processor</Block> → output string
+
+---
+
+
+input string → <Block sx={{p: 3}}><Block sx={{mr: 3}}>parser</Block><Block sx={{mr: 3}}>transformers</Block><Block>compiler</Block></Block> → output string
+
+
+---
+
+input string → <Block>parser</Block> → syntax tree
+
+---
+
+What is a syntax tree?
+
+---
+
+<Box sx={{display: 'flex', alignItems: 'center', '> * + *': {marginLeft: 4}}}>
+
+```
+1 + 2
+```
+
+→
+
+```
+{
+  "type": "ExpressionStatement",
+  "expression": {
+    "type": "BinaryExpression",
+    "left": {
+      "type": "Literal",
+      "value": 1,
+    },
+    "operator": "+",
+    "right": {
+      "type": "Literal",
+      "value": 2,
+    }
+  }
+}
+```
+
+</Box>
+
+---
+
+
+<Box sx={{display: 'flex', alignItems: 'center', '> * + *': {marginLeft: 4}}}>
+
+```md
+# heading
+```
+
+→
+
+```json
+{
+  "type": "heading",
+  "depth": 1,
+  "children": [
+    {
+      "type": "text",
+      "value": "This is a heading",
+    }
+  ]
+}
+```
+
+</Box>
+
+---
+
+input string → <Block>parser</Block> → syntax tree
+
+---
+
+syntax tree → <Block>transformer</Block> → new syntax tree
+
+---
+
+syntax tree → <Block>transformer</Block> → new syntax tree → <Block>transformer</Block> → newer syntax tree
+
+---
+
+syntax tree → <Block>compiler</Block> → output string
+
+---
+
+## Takeaway #3
+
+<Box sx={{px: '10%'}}>
+
+Processors process strings in three stages:
+
+<Steps>
+
+1. Parsing
+1. Transformation
+1. Code generation
+
+</Steps>
+
+</Box>
+
+---
+
+How do you make a processor?
+
+---
+
+`unified()`
+
+<Notes>Start with a base processor, does nothing</Notes>
+
+---
+
+
+`unified().use(plugin)` → new processsor
+
+
+---
+
+Plugins can change the parser, add transfomers, and change the compiler.
+
+---
+
+<CodeSurfer>
+
+```js
+unified()
+  .use(myParser)
+  .use(myTransfomer)
+  .use(myCompiler)
+```
+
+```js 1:5
+unified()
+  .use(toMDAST)
+  .use(remarkMdx)
+  .use(mdxAstToMdxHast)
+  .use(mdxHastToJsx)
+```
+
+</CodeSurfer>
+
+---
+
+## Takeaway #4
+
+<Box sx={{px: '10%'}}>
+
+<Steps>
+
+Processors are constructed using plugins that define what happens in each stage.
+
+</Steps>
+
+</Box>
+
+---
+
+```js
+unified()
+  .use(toMDAST)
+  .use(remarkMdx)
+  .use(mdxAstToMdxHast)
+  .use(mdxHastToJsx)
+```
+
+---
+
+```js
+unified()
+  .use(toMDAST)         // MDX string ->      MDAST
+  .use(remarkMdx)       
+  .use(mdxAstToMdxHast) 
+  .use(mdxHastToJsx)    
+```
+
+---
+
+```js
+unified()
+  .use(toMDAST)         // MDX string ->      MDAST
+  .use(remarkMdx)       // MDAST      ->     MDXAST
+  .use(mdxAstToMdxHast) 
+  .use(mdxHastToJsx)    
+```
+
+---
+
+```js
+unified()
+  .use(toMDAST)         // MDX string ->      MDAST
+  .use(remarkMdx)       // MDAST      ->     MDXAST
+  .use(mdxAstToMdxHast) // MDXAST     ->    MDXHAST
+  .use(mdxHastToJsx)    
+```
+
+---
+
+
+```js
+unified()
+  .use(toMDAST)         // MDX string ->      MDAST
+  .use(remarkMdx)       // MDAST      ->     MDXAST
+  .use(mdxAstToMdxHast) // MDXAST     ->    MDXHAST
+  .use(mdxHastToJsx)    // MDXHAST    -> JSX string
+```
+
+---
+
+Example
+
+---
+
+### MDX string
+
+```
+import Button from './button'
+
+# This is a heading
+
+Hello potato
+
+<Button>Click me</Button>
+```
+
+---
+
+### MDAST
+
+```
+{
+  type: 'root',
+  children: [
+    {
+      type: 'import',
+      value: "import Button from './button'",
+    },
+    {
+      type: 'heading',
+      depth: 1,
+      children: [Array],
+    },
+    { type: 'paragraph', children: [Array] },
+    {
+      type: 'mdxBlockElement',
+      name: 'Button',
+      attributes: [],
+      children: [Array],
+    }
+  ]
+}
+```
+
+---
+
+### MDXAST
+
+```
+{
+  type: 'root',
+  children: [
+    {
+      type: 'import',
+      value: "import Button from './button'",
+    },
+    {
+      type: 'heading',
+      depth: 1,
+      children: [Array],
+    },
+    { type: 'paragraph', children: [Array] },
+    {
+      type: 'mdxBlockElement',
+      name: 'Button',
+      attributes: [],
+      children: [Array],
+    }
+  ]
+}
+```
+
+----
+
+### MDXHAST
+
+```
+{
+  type: 'root',
+  children: [
+    {
+      type: 'import',
+      value: "import Button from './button'",
+    },
+    {
+      type: 'element',
+      tagName: 'h1',
+      properties: {},
+      children: [Array],
+    },
+    ...
+  ],
+}
+```
+
+<Notes>Is MDXHAST different than HAST?</Notes>
+
+---
+
+### JSX string
+
+```
+import Button from './button'
+
+const MDXLayout = "wrapper"
+export default function MDXContent({ components, ...props }) {
+  return (
+    <MDXLayout {...props} components={components} mdxType="MDXLayout">
+      <h1>{`This is a heading`}</h1>
+      <p>{`Hello potato`}</p>
+      <Button mdxType="Button">
+        <p>{`Click me`}</p>
+      </Button>
+    </MDXLayout>
+  );
+};
+
+MDXContent.isMDXComponent = true;
+```
+
+---
+
+## Takeaway #5
+
+<Box sx={{px: '10%'}}>
+
+The MDX processor, specifically, converts an MDX string → MDAST → MDXAST → MDXHAST → JSX string.
+
+<Notes>Do we need a 5th takeaway?</Notes>
+
+</Box>
+
+---
+
+<CodeSurfer>
+
+```js
+  unified()
+    .use(toMDAST)
+    .use(remarkMdx)
+    .use(mdxAstToMdxHast)
+    .use(mdxHastToJsx)
+```
+
+
+```js 1:5
+  const processor = unified()
+    .use(toMDAST)
+    .use(remarkMdx)
+    .use(mdxAstToMdxHast)
+    .use(mdxHastToJsx)
+```
+
+```js 1:11
+async function mdx(mdxString) {
+  const processor = unified()
+    .use(toMDAST)
+    .use(remarkMdx)
+    .use(mdxAstToMdxHast)
+    .use(mdxHastToJsx)
+
+  const file = await processor.process(mdxString)
+
+  return file.contents
+}
+```
+
+</CodeSurfer>
+
+---
+
+## Recap
+
+<Box sx={{px: '10%'}}>
+
+<Steps>
+
+1. MDX (the library), at its core, is a function that accepts an MDX string and returns a JSX string.
+1. MDX (the library) uses a package called unified to build the function (aka processor) that can transform an MDX string into a JSX string.
+1. Processors process strings in three stages: parsing, transformation, code generation.
+1. Processors are constructed using plugins that define what happens in each stage.
+1. The MDX processor, specifically, converts an MDX string → MDAST → MDXAST → MDXHAST → JSX string.
+
+</Steps>
+
+</Box>
+
+---
+
+## Takeaway #6 (bonus)
+
+<Steps>
+
+The tools you use aren't magic.
+
+</Steps>
+
+<Notes>Why bother learning how the tools you use work?</Notes>
+
+---
+
+## Challenge
+
+<Steps>
+
+Pick a tool you use and try to figure out how it works.
+
+</Steps>
+
+---
+
+## Thank you
+
+---
+
+[github.com/colebemis/demystifying-mdx-talk](https://github.com/colebemis/demystifying-mdx-talk)
+
+---
+
+[@colebemis](https://twitter.com/colebemis)
