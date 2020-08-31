@@ -10,4 +10,4 @@ https://demystifying-mdx.netlify.app
 
 ## Video
 
-_Coming soon..._
+[Watch Video on Egghead](https://egghead.io/lessons/mdx-demystifying-mdx?pl=mdx-conf-3fc2)
